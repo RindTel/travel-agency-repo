@@ -1,0 +1,840 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sigurime - LET</title>
+  <meta name="description" content="Insurance Plans - LET" />
+  <meta name="author" content="LET" />
+
+  <!-- FontAwesome for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  />
+
+  <meta property="og:title" content="Sigurime - LET" />
+  <meta property="og:description" content="Insurance Plans - LET" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@lovable_dev" />
+  <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+  <style>
+    :root {
+      --gradient-primary: linear-gradient(135deg, #2C3E50, #3498DB);
+    }
+
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--gradient-primary);
+      color: #fff;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #1e40af;
+      padding: 15px 0;
+      color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .navbar .logo-text {
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #fbbf24;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-menu li a {
+      color: white;
+      font-weight: 600;
+      padding: 6px 10px;
+      transition: color 0.3s ease;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-menu li a:hover {
+      color: #fbbf24;
+    }
+
+    /* Auth Section */
+    .auth-section {
+      position: relative;
+    }
+
+    .auth-button {
+      background: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      padding: 6px 12px;
+      transition: color 0.3s ease;
+    }
+
+    .auth-button:hover {
+      color: #fbbf24;
+    }
+
+    /* Dropdown */
+    .profile-dropdown {
+      position: absolute;
+      right: 0;
+      top: 120%;
+      background-color: white;
+      color: #333;
+      border-radius: 6px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      min-width: 160px;
+      z-index: 2000;
+      overflow: hidden;
+      display: none;
+    }
+
+    .profile-dropdown.show {
+      display: block;
+    }
+
+    .profile-dropdown .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.25s ease;
+      border-bottom: 1px solid #eee;
+    }
+
+    .profile-dropdown .dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .profile-dropdown .dropdown-item i {
+      color: #1e40af;
+      font-size: 1.1rem;
+    }
+
+    .profile-dropdown .dropdown-item:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Main Section */
+    main {
+      padding: 40px 0 80px;
+    }
+
+    h2 {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #fbbf24;
+      font-weight: bold;
+    }
+
+    .section-description {
+      text-align: center;
+      font-size: 1.25rem;
+      color: #e5e7eb;
+      margin-bottom: 4rem;
+      font-weight: 500;
+    }
+
+    /* Insurance Plans Container */
+    .plans-container {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Individual Plan */
+    .insurance-plan {
+      background: linear-gradient(135deg, #475569, #1e40af);
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      padding: 25px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      color: white;
+    }
+
+    .insurance-plan:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    }
+
+    .insurance-plan.featured {
+      border: 3px solid #fbbf24;
+      box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: #fbbf24;
+      color: #1e40af;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+
+    .plan-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .plan-header h3 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .price span {
+      font-weight: 400;
+      font-size: 1rem;
+      color: #d1d5db;
+      margin-left: 5px;
+    }
+
+    .plan-features {
+      flex-grow: 1;
+      overflow-y: auto;
+      max-height: 360px;
+      padding-right: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: #fbbf24 transparent;
+    }
+
+    .plan-features::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .plan-features::-webkit-scrollbar-thumb {
+      background-color: #fbbf24;
+      border-radius: 4px;
+    }
+
+    .feature-category {
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-category h4 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #fbbf24;
+    }
+
+    .feature-category ul li {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+    }
+
+    .feature-category ul li i {
+      color: #10b981;
+      min-width: 18px;
+      font-size: 1rem;
+    }
+
+    /* Buttons */
+    .plan-btn {
+      margin-top: 24px;
+      background-color: #fbbf24;
+      color: #1e40af;
+      border: none;
+      padding: 12px 0;
+      width: 100%;
+      font-size: 1.125rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .plan-btn:hover {
+      background-color: #f59e0b;
+    }
+
+    /* Payment Modal */
+    .payment-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+    }
+
+    .payment-modal.hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, #475569, #1e40af);
+      color: #fff;
+      border-radius: 12px;
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    }
+
+    .modal-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 24px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      background: none;
+      border: none;
+    }
+
+    .close-btn:hover {
+      color: #fbbf24;
+    }
+
+    /* Payment Method Selection */
+    .payment-methods {
+      display: flex;
+      margin-bottom: 24px;
+      gap: 8px;
+    }
+
+    .payment-method-btn {
+      flex: 1;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 0.875rem;
+    }
+
+    .payment-method-btn.active {
+      background-color: #fbbf24;
+      color: #1e40af;
+    }
+
+    .payment-method-btn:not(.active) {
+      background-color: #6b7280;
+      color: #fff;
+    }
+
+    .payment-method-btn:not(.active):hover {
+      background-color: #4b5563;
+    }
+
+    /* Payment Forms */
+    .payment-form {
+      display: block;
+    }
+
+    .payment-form.hidden {
+      display: none;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+      background-color: rgba(255,255,255,0.9);
+      color: #000;
+    }
+
+    .form-group input:focus {
+      outline: 2px solid #fbbf24;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .payment-submit-btn {
+      background-color: #fbbf24;
+      color: #1e40af;
+      margin-top: 24px;
+      border: none;
+      padding: 12px 0;
+      width: 100%;
+      font-size: 1.125rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .payment-submit-btn:hover {
+      background-color: #f59e0b;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 32px 0;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar-content {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .nav-menu {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .plans-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .insurance-plan {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .payment-methods {
+        flex-direction: column;
+      }
+
+      .form-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="navbar-content">
+      <a href="#" class="logo-text">LET</a>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#home">Kryefaqja</a></li>
+          <li><a href="#services">Shërbimet</a></li>
+          <li><a href="#contact">Kontakti</a></li>
+          <li class="auth-section">
+            <button id="authButton" class="auth-button">
+              <i class="fas fa-user"></i>
+              <span>LET</span>
+              <i class="fas fa-caret-down"></i>
+            </button>
+            <div id="profileDropdown" class="profile-dropdown">
+              <div class="dropdown-item">
+                <i class="fas fa-user-circle"></i>
+                <span>LLogaria Ime</span>
+              </div>
+              <div class="dropdown-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+              </div>
+              <div class="dropdown-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>DIL</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <h2>Planet e Sigurimeve</h2>
+      <p class="section-description">
+        Zgjidhni planin më të përshtatshëm të sigurimit që i plotëson nevojat tuaja.
+      </p>
+
+      <div class="plans-container">
+        <!-- Basic Plan -->
+        <div class="insurance-plan">
+          <div class="plan-header">
+            <h3>Basik</h3>
+            <div class="price">49€ <span>/ muaji</span></div>
+          </div>
+          <div class="plan-features">
+            <div class="feature-category">
+              <h4>Shërbimet mjekësore</h4>
+              <ul>
+                <li><i class="fas fa-check"></i> <span>Kontrolla mjekësore periodike</span></li>
+                <li><i class="fas fa-check"></i> <span>Konsultë bazë</span></li>
+                <li><i class="fas fa-check"></i> <span>Laboratorë standard</span></li>
+              </ul>
+            </div>
+            <div class="feature-category">
+              <h4>Mbështetje</h4>
+              <ul>
+                <li><i class="fas fa-check"></i> <span>Support në telefon</span></li>
+                <li><i class="fas fa-check"></i> <span>Chat online</span></li>
+              </ul>
+            </div>
+          </div>
+          <button class="plan-btn" data-plan="Basik">Pagesa</button>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="insurance-plan featured">
+          <div class="featured-badge">FEATURED</div>
+          <div class="plan-header">
+            <h3>Premium</h3>
+            <div class="price">79€ <span>/ muaji</span></div>
+          </div>
+          <div class="plan-features">
+            <div class="feature-category">
+              <h4>Shërbimet mjekësore</h4>
+              <ul>
+                <li><i class="fas fa-check"></i> <span>Kontrolla mjekësore të avancuara</span></li>
+                <li><i class="fas fa-check"></i> <span>Konsultë specialistike</span></li>
+                <li><i class="fas fa-check"></i> <span>Laboratorë të avancuar</span></li>
+                <li><i class="fas fa-check"></i> <span>Terapitë specializuar</span></li>
+              </ul>
+            </div>
+            <div class="feature-category">
+              <h4>Mbështetje</h4>
+              <ul>
+                <li><i class="fas fa-check"></i> <span>Support 24/7 në telefon</span></li>
+                <li><i class="fas fa-check"></i> <span>Chat live me doktorë</span></li>
+              </ul>
+            </div>
+          </div>
+          <button class="plan-btn" data-plan="Premium">Pagesa</button>
+        </div>
+
+        <!-- Family Plan -->
+        <div class="insurance-plan">
+          <div class="plan-header">
+            <h3>Family</h3>
+            <div class="price">129€ <span>/ muaji</span></div>
+          </div>
+          <div class="plan-features">
+            <div class="feature-category">
+              <h4>Shërbimet mjekësore</h4>
+              <ul>
+                <li><i class="fas fa-check"></i> <span>Kontrolla për të gjithë familjen</span></li>
+                <li><i class="fas fa-check"></i> <span>Konsultë dhe terapi për fëmijë</span></li>
+                <li><i class="fas fa-check"></i> <span>Laboratorë dhe imazheri</span></li>
+              </ul>
+            </div>
+            <div class="feature-category">
+              <h4>Mbështetje</h4>
+              <ul>
+                <li><i class="fas fa-check"></i> <span>Support në telefon</span></li>
+                <li><i class="fas fa-check"></i> <span>Konsultë familjare</span></li>
+              </ul>
+            </div>
+          </div>
+          <button class="plan-btn" data-plan="Family">Pagesa</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="payment-modal hidden">
+      <div class="modal-content">
+        <button class="close-btn" id="closeModal">&times;</button>
+        <h3>Pagesa për planin <span id="selectedPlanName">Plan</span></h3>
+
+        <!-- Payment Method Selection -->
+        <div class="payment-methods">
+          <button class="payment-method-btn active" data-method="card">
+            <i class="fas fa-credit-card"></i> Kartë
+          </button>
+          <button class="payment-method-btn" data-method="paypal">
+            <i class="fab fa-paypal"></i> PayPal
+          </button>
+        </div>
+
+        <!-- Card Payment Form -->
+        <form id="cardForm" class="payment-form">
+          <div class="form-group">
+            <label for="cardName">Emri në kartë</label>
+            <input type="text" id="cardName" required>
+          </div>
+          <div class="form-group">
+            <label for="cardNumber">Numri i kartës</label>
+            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="expiryDate">MM/YY</label>
+              <input type="text" id="expiryDate" placeholder="MM/YY" required>
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" required>
+            </div>
+          </div>
+          <button type="submit" class="payment-submit-btn">Paguaj me Kartë</button>
+        </form>
+
+        <!-- PayPal Payment Form -->
+        <form id="paypalForm" class="payment-form hidden">
+          <div class="form-group">
+            <label for="paypalEmail">Email PayPal</label>
+            <input type="email" id="paypalEmail" placeholder="you@example.com" required>
+          </div>
+          <button type="submit" class="payment-submit-btn">Paguaj me PayPal</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 LET. Të gjitha të drejtat e rezervuara.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Global variables
+    let isProfileDropdownOpen = false;
+    let selectedPlan = '';
+    let selectedPaymentMethod = 'card';
+
+    // DOM elements
+    const authButton = document.getElementById('authButton');
+    const profileDropdown = document.getElementById('profileDropdown');
+    const paymentModal = document.getElementById('paymentModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const selectedPlanName = document.getElementById('selectedPlanName');
+    const planButtons = document.querySelectorAll('.plan-btn');
+    const paymentMethodBtns = document.querySelectorAll('.payment-method-btn');
+    const cardForm = document.getElementById('cardForm');
+    const paypalForm = document.getElementById('paypalForm');
+
+    // Profile dropdown functionality
+    authButton.addEventListener('click', function(e) {
+      e.stopPropagation();
+      isProfileDropdownOpen = !isProfileDropdownOpen;
+      if (isProfileDropdownOpen) {
+        profileDropdown.classList.add('show');
+      } else {
+        profileDropdown.classList.remove('show');
+      }
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!authButton.contains(e.target) && !profileDropdown.contains(e.target)) {
+        isProfileDropdownOpen = false;
+        profileDropdown.classList.remove('show');
+      }
+    });
+
+    // Plan selection functionality
+    planButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        selectedPlan = this.getAttribute('data-plan');
+        selectedPlanName.textContent = selectedPlan;
+        paymentModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      });
+    });
+
+    // Close modal functionality
+    function closeModal() {
+      paymentModal.classList.add('hidden');
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Close modal when clicking outside
+    paymentModal.addEventListener('click', function(e) {
+      if (e.target === paymentModal) {
+        closeModal();
+      }
+    });
+
+    // Payment method selection
+    paymentMethodBtns.forEach(function(button) {
+      button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        paymentMethodBtns.forEach(function(btn) {
+          btn.classList.remove('active');
+        });
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        // Get selected method
+        selectedPaymentMethod = this.getAttribute('data-method');
+        
+        // Show/hide forms
+        if (selectedPaymentMethod === 'card') {
+          cardForm.classList.remove('hidden');
+          paypalForm.classList.add('hidden');
+        } else if (selectedPaymentMethod === 'paypal') {
+          cardForm.classList.add('hidden');
+          paypalForm.classList.remove('hidden');
+        }
+      });
+    });
+
+    // Form submission handling
+    cardForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      console.log('Processing card payment for ' + selectedPlan + ' plan');
+      alert('Payment processed for ' + selectedPlan + ' plan with card!');
+      closeModal();
+    });
+
+    paypalForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      console.log('Processing PayPal payment for ' + selectedPlan + ' plan');
+      alert('Payment processed for ' + selectedPlan + ' plan with PayPal!');
+      closeModal();
+    });
+
+    // Card number formatting
+    const cardNumberInput = document.getElementById('cardNumber');
+    cardNumberInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+      let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+      if (formattedValue.length <= 19) {
+        e.target.value = formattedValue;
+      }
+    });
+
+    // Expiry date formatting
+    const expiryInput = document.getElementById('expiryDate');
+    expiryInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length >= 2) {
+        value = value.substring(0,2) + '/' + value.substring(2,4);
+      }
+      e.target.value = value;
+    });
+
+    // CVV validation
+    const cvvInput = document.getElementById('cvv');
+    cvvInput.addEventListener('input', function(e) {
+      e.target.value = e.target.value.replace(/[^0-9]/g, '').substring(0, 4);
+    });
+
+    // Keyboard navigation for accessibility
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !paymentModal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>

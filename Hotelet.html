@@ -1,0 +1,389 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hotel Booking</title>
+ 
+ <style>
+  * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #2C3E50, #3498DB);
+  color: white;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  padding: 30px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2,
+h3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.steps {
+  position: relative;
+  height: 40px;
+  margin-bottom: 40px;
+  display: block;
+}
+
+.steps::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  right: 20px;
+  height: 3px;
+  background: #ccc;
+  z-index: 0;
+}
+
+.step-group {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  text-align: center;
+  z-index: 1;
+}
+
+.step-group:nth-child(1) {
+  left: 0;
+}
+
+.step-group:nth-child(2) {
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  text-align: center;
+}
+
+.step-group:nth-child(3) {
+  right: 0;
+  text-align: right;
+}
+
+.step-indicator {
+  background: #374151;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.step-indicator.active {
+  background: #00bfff;
+  transform: scale(1.1);
+}
+
+.step-label {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.step {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.step.active {
+  display: block;
+}
+
+.hotel-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  transition: transform 0.3s;
+}
+
+.hotel-card:hover {
+  transform: scale(1.02);
+}
+
+.hotel-card img {
+  width: 150px;
+  border-radius: 8px;
+}
+
+.hotel-card-details {
+  flex-grow: 1;
+}
+
+.hotel-card h4 {
+  margin-bottom: 5px;
+}
+
+.hotel-card p {
+  margin-bottom: 10px;
+}
+
+.hotel-card button {
+  background: #00bfff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.hotel-card button:hover {
+  background: #009acd;
+  transform: scale(1.05);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.navigation button {
+  padding: 12px 20px;
+  background: #00bfff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.navigation button:hover {
+  background: #009acd;
+  transform: scale(1.05);
+}
+
+.summary p {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .hotel-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .navigation {
+    flex-direction: column;
+  }
+
+  .navigation button {
+    width: 100%;
+  }
+  
+  .hotel-card button.selected {
+    background: transparent;
+    border: 2px solid #00bfff;
+    color: #00bfff;
+    cursor: default;
+    transform: none;
+  }
+
+  .hotel-card button.selected:hover {
+    background: transparent;
+    transform: none;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Hotel Booking</h2>
+
+    <div class="steps">
+      <div class="step-group">
+        <div class="step-indicator active" id="dot1">1</div>
+        <div class="step-label">Choose Room</div>
+      </div>
+      <div class="step-group">
+        <div class="step-indicator" id="dot2">2</div>
+        <div class="step-label">Guest Details</div>
+      </div>
+      <div class="step-group">
+        <div class="step-indicator" id="dot3">3</div>
+        <div class="step-label">Confirmation</div>
+      </div>
+    </div>
+
+    <div class="step active" id="step1">
+      <h3>Select Your Hotel</h3>
+      <div class="hotel-card">
+        <img src="images/BarcelonaHotel.jpg" alt="Barcelona Beach">
+        <div class="hotel-card-details">
+          <h4>Barcelona Beach Hotel</h4>
+          <p>Sea view, luxury - $180/night</p>
+          <button class="selectBtn" data-hotel="Barcelona Beach Hotel">Select</button>
+        </div>
+      </div>
+      <div class="hotel-card">
+        <img src="https://images.unsplash.com/photo-1554797589-7241bb691973?auto=format&fit=crop&w=600&q=80" alt="Tokyo Hotel">
+        <div class="hotel-card-details">
+          <h4>Tokyo Skyview Inn</h4>
+          <p>Modern cityscape - $160/night</p>
+          <button class="selectBtn" data-hotel="Tokyo Skyview Inn">Select</button>
+        </div>
+      </div>
+      <div class="hotel-card">
+        <img src="images/SwissLodge.jpg" alt="Swiss Hotel">
+        <div class="hotel-card-details">
+          <h4>Swiss Alps Lodge</h4>
+          <p>Snowy mountains - $200/night</p>
+          <button class="selectBtn" data-hotel="Swiss Alps Lodge">Select</button>
+        </div>
+      </div>
+      <div class="navigation">
+        <button id="continueBtn" onclick="nextStep()" disabled>Continue</button>
+      </div>
+    </div>
+
+    <div class="step" id="step2">
+      <h3>Guest Details</h3>
+      <input type="text" id="name" placeholder="Full Name" />
+      <input type="email" id="email" placeholder="Email Address" />
+      <input type="tel" id="phone" placeholder="Phone Number" />
+      <input type="text" id="address" placeholder="Address" />
+      <input type="text" id="zip" placeholder="ZIP Code" />
+      <textarea id="requests" placeholder="Special Requests"></textarea>
+      <input type="text" id="payment" placeholder="Payment Info (e.g. Visa ****1234)" />
+      <div class="navigation">
+        <button onclick="prevStep()">Back</button>
+        <button onclick="nextStep()">Continue</button>
+      </div>
+    </div>
+
+    <div class="step" id="step3">
+      <h3>Confirmation</h3>
+      <div class="summary" id="summary"></div>
+      <div class="navigation">
+        <button onclick="prevStep()">Back</button>
+        <button onclick="confirmBooking()">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    let bookingData = {};
+    const dots = [1, 2, 3].map(n => document.getElementById(`dot${n}`));
+
+   document.querySelectorAll('.selectBtn').forEach(button => {
+  button.addEventListener('click', () => {
+    bookingData.hotel = button.dataset.hotel;
+
+    document.querySelectorAll('.selectBtn').forEach(btn => {
+      btn.disabled = false;
+      btn.textContent = "Select";
+      btn.classList.remove('selected');
+    });
+
+    button.textContent = "Selected";
+    button.disabled = true;
+    button.classList.add('selected');
+    document.getElementById("continueBtn").disabled = false;
+  });
+});
+
+    function showStep(step) {
+      document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+      document.getElementById(`step${step}`).classList.add('active');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index + 1 === step);
+      });
+    }
+
+    function nextStep() {
+      if (currentStep === 2) {
+        bookingData.name = document.getElementById('name').value;
+        bookingData.email = document.getElementById('email').value;
+        bookingData.phone = document.getElementById('phone').value;
+        bookingData.address = document.getElementById('address').value;
+        bookingData.zip = document.getElementById('zip').value;
+        bookingData.requests = document.getElementById('requests').value;
+        bookingData.payment = document.getElementById('payment').value;
+        fillSummary();
+      }
+      if (currentStep < 3) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    }
+
+    function fillSummary() {
+      document.getElementById("summary").innerHTML = `
+        <p><strong>Hotel:</strong> ${bookingData.hotel}</p>
+        <p><strong>Name:</strong> ${bookingData.name}</p>
+        <p><strong>Email:</strong> ${bookingData.email}</p>
+        <p><strong>Phone:</strong> ${bookingData.phone}</p>
+        <p><strong>Address:</strong> ${bookingData.address}</p>
+        <p><strong>ZIP:</strong> ${bookingData.zip}</p>
+        <p><strong>Special Requests:</strong> ${bookingData.requests}</p>
+        <p><strong>Payment:</strong> ${bookingData.payment}</p>
+      `;
+    }
+
+    function confirmBooking() {
+      alert(`Thank you, ${bookingData.name}! Your booking for ${bookingData.hotel} is confirmed.`);
+      location.reload();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agjencia e Udhëtimeve dhe Sigurimeve</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/auth.js" defer></script>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-inner"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <p class="navbar-logo">LET</p>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="menu-overlay"></div>
+            <ul class="nav-menu">
+                <li><a href="#home">Kryefaqja</a></li>
+                <li><a href="#services">Shërbimet</a></li>
+                <li><a href="#destinations">Destinacionet</a></li>
+                <li><a href="#insurance">Sigurimi</a></li>
+                <li><a href="#about">Rreth Nesh</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+                <div class="auth-section">
+                    <button class="auth-button" id="authButton">
+                        <span class="auth-text">Regjistrohu / Hyr</span>
+                        <span class="user-name hidden"></span>
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <div class="profile-dropdown hidden">
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-user-circle"></i>
+                            Llogaria Ime
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-suitcase"></i>
+                            Paketat e Mia
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-history"></i>
+                            Historiku i Rezervimeve
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-cog"></i>
+                            Cilësimet
+                        </a>
+                        <button class="dropdown-item" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Dil
+                        </button>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-slider">
+            <div class="slide active">
+                <img src="images/paris.jpg" alt="Paris">
+            </div>
+            <div class="slide">
+                <img src="images/bali.jpg" alt="Bali">
+            </div>
+            <div class="slide">
+                <img src="images/switzerland.jpg" alt="Switzerland">
+            </div>
+            <div class="slide">
+                <img src="images/dubai.jpg" alt="Dubai">
+            </div>
+            <div class="slide">
+                <img src="images/rome.jpg" alt="Rome">
+            </div>
+            <div class="slide">
+                <img src="images/tokyo.jpg" alt="Tokyo">
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-gradient"></div>
+            <div class="slider-controls">
+                <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="slider-dots"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="animate-text">Eksploroni Botën Me Ne</h1>
+            <p class="animate-text-delay">Zbuloni destinacionet më të bukura të botës me ekspertët tanë</p>
+            <div class="search-container glass-effect">
+                <div class="search-tabs">
+                    <button class="search-tab active" data-tab="flights">Fluturime</button>
+                    <button class="search-tab" data-tab="hotels" onclick="location.href='Hotelet.html'">Hoteli</button>
+                    <button class="search-tab" data-tab="packages">Paketa</button>
+                </div>
+                <div class="search-content">
+                    <div class="search-input-group">
+                        <i class="fas fa-globe-americas"></i>
+                        <input type="text" placeholder="Ku doni të shkoni?" class="search-input" id="destinationSearch">
+                        <div class="search-dropdown">
+                            <div class="dropdown-header">Destinacionet Popullore</div>
+                            <ul class="popular-destinations">
+                                <li data-destination="paris">
+                                    <div class="destination-image">
+                                        <img src="images/paris.jpg" alt="Paris">
+                                    </div>
+                                    <div class="destination-info">
+                                        <div class="destination-name">Paris, Francë</div>
+                                        <div class="destination-desc">Qyteti i dashurisë dhe artit</div>
+                                    </div>
+                                </li>
+                                <li data-destination="bali">
+                                    <div class="destination-image">
+                                        <img src="images/bali.jpg" alt="Bali">
+                                    </div>
+                                    <div class="destination-info">
+                                        <div class="destination-name">Bali, Indonezi</div>
+                                        <div class="destination-desc">Parajsa tropikale</div>
+                                    </div>
+                                </li>
+                                <li data-destination="dubai">
+                                    <div class="destination-image">
+                                        <img src="images/dubai.jpg" alt="Dubai">
+                                    </div>
+                                    <div class="destination-info">
+                                        <div class="destination-name">Dubai, UAE</div>
+                                        <div class="destination-desc">Luksi dhe modernizmi</div>
+                                    </div>
+                                </li>
+                                <li data-destination="rome">
+                                    <div class="destination-image">
+                                        <img src="images/rome.jpg" alt="Rome">
+                                    </div>
+                                    <div class="destination-info">
+                                        <div class="destination-name">Romë, Itali</div>
+                                        <div class="destination-desc">Historia dhe kultura</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="search-input-group">
+                        <i class="far fa-calendar-alt"></i>
+                        <input type="date" class="search-input">
+                    </div>
+                    <div class="search-input-group">
+                        <i class="fas fa-user-friends"></i>
+                        <div class="custom-dropdown">
+                            <div class="selected-option search-input">
+                                <span>2 Udhëtarë</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="dropdown-options">
+                                <div class="dropdown-option" data-value="1">1 Udhëtar</div>
+                                <div class="dropdown-option" data-value="2">2 Udhëtarë</div>
+                                <div class="dropdown-option" data-value="3">3 Udhëtarë</div>
+                                <div class="dropdown-option" data-value="4">4 ose më shumë Udhëtarë</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="search-button" data-tab="results" onclick="location.href='search-results.html'">Kerko</button>
+                </div>
+            </div>
+            <div class="floating-elements">
+                <div class="float-element plane"><i class="fas fa-plane"></i></div>
+                <div class="float-element cloud"><i class="fas fa-cloud"></i></div>
+                <div class="float-element suitcase"><i class="fas fa-suitcase"></i></div>
+                <div class="float-element palm"><i class="fas fa-palm-tree"></i></div>
+                <div class="float-element sun"><i class="fas fa-sun"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>🎯 Shërbimet Tona</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Udhëtime të Personalizuara</h3>
+                    <p>Zbulo pako të krijuara posaçërisht për ty — nga pushimet në plazh te aventurat malore.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Sigurime të Udhëtimit</h3>
+                    <p>Siguri maksimale në çdo hap — mbulim për emergjenca, anulime, dhe më shumë.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>Këshillim Personal</h3>
+                    <p>Ekspertë të përkushtuar për të ndihmuar në çdo detaj të udhëtimit tënd.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="destinations">
+        <div class="container">
+            <h2>🌎 Destinacionet Popullore</h2>
+            <div class="destinations-grid" id="initialDestinations">
+                <div class="destination-card" style="--card-index: 1">
+                    <img src="images/paris.jpg" alt="Paris">
+                    <div class="content">
+                        <h3>Paris, Francë</h3>
+                        <p>Romanca e përjetshme</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="--card-index: 2">
+                    <img src="images/bali.jpg" alt="Bali">
+                    <div class="content">
+                        <h3>Bali, Indonezi</h3>
+                        <p>Parajsa tropikale</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="--card-index: 3">
+                    <img src="images/switzerland.jpg" alt="Switzerland">
+                    <div class="content">
+                        <h3>Zvicër</h3>
+                        <p>Aventurë alpine</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="show-more-container">
+                <button class="show-more-btn" id="showMoreBtn">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+
+            <div class="destinations-grid hidden" id="moreDestinations">
+                <div class="destination-card" style="--card-index: 4">
+                    <img src="images/dubai.jpg" alt="Dubai">
+                    <div class="content">
+                        <h3>Dubai, Emiratet</h3>
+                        <p>Luksi dhe aventura</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="--card-index: 5">
+                    <img src="images/rome.jpg" alt="Romë">
+                    <div class="content">
+                        <h3>Romë, Itali</h3>
+                        <p>Historia e gjallë</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="--card-index: 6">
+                    <img src="images/tokyo.jpg" alt="Tokio">
+                    <div class="content">
+                        <h3>Tokio, Japoni</h3>
+                        <p>Tradita dhe moderniteti</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="--card-index: 7">
+                    <img src="images/newyork.jpg" alt="New York">
+                    <div class="content">
+                        <h3>New York, SHBA</h3>
+                        <p>Qyteti që nuk fle kurrë</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="--card-index: 8">
+                    <img src="images/santorini.jpg" alt="Santorini">
+                    <div class="content">
+                        <h3>Santorini, Greqi</h3>
+                        <p>Pamjet e mrekullueshme</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="--card-index: 9">
+                    <img src="images/barcelona.jpg" alt="Barcelona">
+                    <div class="content">
+                        <h3>Barcelona, Spanjë</h3>
+                        <p>Arte dhe arkitekturë</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="--card-index: 10">
+                    <img src="images/sydney.jpg" alt="Sydney">
+                    <div class="content">
+                        <h3>Sydney, Australi</h3>
+                        <p>Opera dhe plazhet</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="--card-index: 11">
+                    <img src="images/rio.jpg" alt="Rio">
+                    <div class="content">
+                        <h3>Rio de Janeiro, Brazili</h3>
+                        <p>Karnavali dhe plazhet</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="--card-index: 12">
+                    <img src="images/capetown.jpg" alt="Cape Town">
+                    <div class="content">
+                        <h3>Cape Town, Afrika e Jugut</h3>
+                        <p>Natyra dhe kultura</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Insurance Section -->
+    <section id="insurance" class="insurance">
+        <div class="container">
+            <h2>🛡️ Sigurimi i Udhëtimit</h2>
+            
+            <div class="insurance-plans">
+                <h3>Zgjidhni Paketën e Sigurimit</h3>
+                <div class="plans-container">
+                    <div class="insurance-plan" id="basicPlan">
+                        <div class="plan-header">
+                            <h4>Bazik</h4>
+                            <div class="price">€49.99<span>/udhëtim</span></div>
+                        </div>
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Ndihmë mjekësore deri në €10,000</li>
+                                <li><i class="fas fa-check"></i> Anulim deri në €200</li>
+                                <li><i class="fas fa-check"></i> Bagazh i humbur deri në €300</li>
+                                <li><i class="fas fa-check"></i> Asistencë 24/7</li>
+                            </ul>
+                        </div>
+                        <a href="sigurime.html" class="btn primary plan-btn">Zgjidhni</a>
+                    </div>
+                    
+                    <div class="insurance-plan featured" id="premiumPlan">
+                        <div class="plan-header">
+                            <h4>Premium</h4>
+                            <div class="price">€79.99<span>/udhëtim</span></div>
+                            <div class="featured-badge">Popullar</div>
+                        </div>
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Ndihmë mjekësore deri në €25,000</li>
+                                <li><i class="fas fa-check"></i> Anulim deri në €500</li>
+                                <li><i class="fas fa-check"></i> Bagazh i humbur deri në €600</li>
+                                <li><i class="fas fa-check"></i> Asistencë 24/7 me përvojës</li>
+                                <li><i class="fas fa-check"></i> Evakuim mjekësor</li>
+                            </ul>
+                        </div>
+                        <a href="sigurime.html" class="btn primary plan-btn">Zgjidhni</a>
+                    </div>
+                    
+                    <div class="insurance-plan" id="ultimatePlan">
+                        <div class="plan-header">
+                            <h4>Familjar</h4>
+                            <div class="price">€129.99<span>/udhëtim</span></div>
+                        </div>
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Ndihmë mjekësore deri në €50,000</li>
+                                <li><i class="fas fa-check"></i> Anulim deri në €1,000</li>
+                                <li><i class="fas fa-check"></i> Bagazh i humbur deri në €1,000</li>
+                                <li><i class="fas fa-check"></i> Asistencë 24/7 me përvojës</li>
+                                <li><i class="fas fa-check"></i> Evakuim mjekësor</li>
+                                <li><i class="fas fa-check"></i> Mbulim për fëmijët</li>
+                            </ul>
+                        </div>
+                        <a href="sigurime.html" class="btn primary plan-btn">Zgjidhni</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="insurance-content">
+                <div class="why-insurance">
+                    <h3>Pse është i rëndësishëm?</h3>
+                    <p>Sepse gjërat ndodhin. Ne sigurojmë që çdo udhëtim të jetë pa stres.</p>
+                </div>
+                <div class="insurance-features">
+                    <h3>Çfarë përfshihet?</h3>
+                    <ul>
+                        <li><i class="fas fa-medkit"></i> Ndihmë mjekësore jashtë vendit</li>
+                        <li><i class="fas fa-undo"></i> Kompensim për anulime</li>
+                        <li><i class="fas fa-suitcase"></i> Bagazh i humbur</li>
+                        <li><i class="fas fa-clock"></i> Asistencë 24/7</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>👋 Rreth Nesh</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Pasi Na Njohni</h3>
+                    <p>Ne jemi një agjenci me pasion për udhëtimet dhe kujdes për klientin. Me vite përvojë dhe partneritete globale, jemi këtu për të realizuar ëndrrat tuaja të udhëtimit me siguri dhe kujdes maksimal.</p>
+                    <p>Misioni ynë është të ofrojmë eksperienca udhëtimi të paharrueshme që transformojnë perspektivat dhe krijojnë kujtime të paharrueshme. Ne besojmë se çdo udhëtim është një mundësi për të zbuluar, mësuar dhe rritur.</p>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Vite Përvojë</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5000+</div>
+                        <div class="stat-label">Klientë të Kënaqur</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label">Destinacione</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Mbështetje</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-values">
+                <h3>Vlerat Tona</h3>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Pasioni</h4>
+                        <p>Ne kemi pasion të vërtetë për udhëtimet dhe kujdesin për klientin tonë.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Besueshmëria</h4>
+                        <p>Ofrojmë shërbime të besueshme dhe transparente në çdo hap.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Inovacioni</h4>
+                        <p>Vazhdimisht kërkojmë mënyra të reja për të përmirësuar eksperiencën tuaj.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>Partneriteti</h4>
+                        <p>Krijojmë marrëdhënie të qëndrueshme me partnerët dhe klientët tanë.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-team">
+                <h3>Ekipi Ynë</h3>
+                <div class="team-description">
+                    <p>Ekipi ynë përbëhet nga profesionistë të përkushtuar me përvojë të gjerë në industri. Bashkë punojmë për të ofruar shërbimet më të mira dhe eksperiencat më të mira udhëtimi.</p>
+                </div>
+                <div class="team-quote">
+                    <blockquote>
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Udhëtimi është i vetmi gjë që blini që ju bën më të pasur."</p>
+                        <cite>- Ekipi ynë</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>📞 Kontakt</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> <strong>Adresa: Prizren</strong</li>
+                        <li><i class="fas fa-phone"></i> <strong>Telefoni:</strong></li>
+                        <li><i class="fas fa-envelope"></i> <strong>Email:</strong> info@agjencia-udhetimeve.com</li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Emri" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Emaili" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Mesazhi" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary">Dërgo Mesazhin</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Agjencia e Udhëtimeve dhe Sigurimeve</h3>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Agjencia e Udhëtimeve dhe Sigurimeve. Të gjitha të drejtat të rezervuara.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html> 
