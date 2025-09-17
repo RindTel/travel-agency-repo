@@ -1,23 +1,23 @@
 # Agjencia e Udhëtimeve dhe Sigurimeve
 
-## 🌟 Zbulo Botën me Ne
+##  Zbulo Botën me Ne
 
 Eksploro destinacionet më të bukura dhe udhëto pa shqetësime me mbështetjen tonë të plotë në sigurime.
 
 [Rezervo Udhëtimin](#) | [Mëso Më Shumë](#)
 
-## 🎯 Shërbimet Tona
+##  Shërbimet Tona
 
-### 🌍 Udhëtime të Personalizuara
+###  Udhëtime të Personalizuara
 Zbulo pako të krijuara posaçërisht për ty — nga pushimet në plazh te aventurat malore.
 
-### 🛡️ Sigurime të Udhëtimit
+###  Sigurime të Udhëtimit
 Siguri maksimale në çdo hap — mbulim për emergjenca, anulime, dhe më shumë.
 
-### 👥 Këshillim Personal
+###  Këshillim Personal
 Ekspertë të përkushtuar për të ndihmuar në çdo detaj të udhëtimit tënd.
 
-## 🌎 Destinacionet Popullore
+##  Destinacionet Popullore
 
 ### Paris, Francë
 - Romanca e përjetshme
@@ -38,20 +38,20 @@ Sepse gjërat ndodhin. Ne sigurojmë që çdo udhëtim të jetë pa stres.
 
 ### Çfarë përfshihet?
 
-- ⚕️ Ndihmë mjekësore jashtë vendit
-- 🔄 Kompensim për anulime
-- 🧳 Bagazh i humbur
-- 🕒 Asistencë 24/7
+-  Ndihmë mjekësore jashtë vendit
+-  Kompensim për anulime
+-  Bagazh i humbur
+-  Asistencë 24/7
 
-## 👋 Rreth Nesh
+##  Rreth Nesh
 
 Ne jemi një agjenci me pasion për udhëtimet dhe kujdes për klientin. Me vite përvojë dhe partneritete globale, jemi këtu për të realizuar ëndrrat tuaja të udhëtimit me siguri dhe kujdes maksimal.
 
-## 📞 Kontakt
+##  Kontakt
 
-- 📍 **Adresa**: Rruga Kryesore 123, Tirana, Shqipëri
-- 📞 **Telefoni**: +355 69 123 4567
-- 📧 **Email**: info@agjencia-udhetimeve.com
+- 📍 **Adresa**: 
+- 📞 **Telefoni**: 
+- 📧 **Email**: 
 
 ### Formular Kontakti
 
